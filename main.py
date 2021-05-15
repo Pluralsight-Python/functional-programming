@@ -4,7 +4,7 @@ from callable_class_instance import Resolver
 
 
 if __name__ == '__main__':
-    resolver = Resolver()
+    resolver = Resolver()   # Classes are callable
     print("Test 1:")
     websites = ('google.com', 'pluralsight.com', 'duckduckgo.com')
 
