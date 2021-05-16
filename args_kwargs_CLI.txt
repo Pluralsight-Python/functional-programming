@@ -1,0 +1,42 @@
+>>> def test1(**kwargs, *args):
+    pass
+  File "<input>", line 1
+    def test1(**kwargs, *args):
+                        ^
+SyntaxError: invalid syntax
+>>> def fix_number_pos_args_mandatory_kwargs(fname, lname, *, age, location):
+    print(f"Name: {fname} {lname}")
+    print(f"Age: {age}")
+    print(f"Location: {location}")
+>>> fix_number_pos_args_mandatory_kwargs("John", "Doe", 27, "Indiana")
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: fix_number_pos_args_mandatory_kwargs() takes 2 positional arguments but 4 were given
+>>> fix_number_pos_args_mandatory_kwargs("John", "Doe", age=27, "Indiana")
+  File "<input>", line 1
+    fix_number_pos_args_mandatory_kwargs("John", "Doe", age=27, "Indiana")
+                                                                         ^
+SyntaxError: positional argument follows keyword argument
+>>> fix_number_pos_args_mandatory_kwargs("John", "Doe", age=27, location="Indiana")
+Name: John Doe
+Age: 27
+Location: Indiana
+
+>>> fix_number_pos_args_mandatory_kwargs("John", "Doe", "extra", age=27, location="Indiana")
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: fix_number_pos_args_mandatory_kwargs() takes 2 positional arguments but 3 positional arguments (and 2 keyword-only arguments) were given
+
+>>> def positional_only_args(op1, op2, /):
+    return op1 * op2
+>>> positional_only_args(23, 23)
+529
+>>> positional_only_args(23, op2=23)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: positional_only_args() got some positional-only arguments passed as keyword arguments: 'op2'
+>>> positional_only_args(op1=23, 23)
+  File "<input>", line 1
+    positional_only_args(op1=23, 23)
+                                   ^
+SyntaxError: positional argument follows keyword argument
