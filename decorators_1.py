@@ -15,11 +15,11 @@ def get_exec_time(func):
     :return: A wrapper function object enclosing call to supplied function
     """
     def wrapper(*args, **kwargs):
-        start_us = datetime.datetime.now().timestamp() * 10**6
+        start_ms = datetime.datetime.now().timestamp() * 10 ** 3
         ret = func(*args, **kwargs)
-        end_us = datetime.datetime.now().timestamp() * 10**6
-        exec_time_us = end_us - start_us
-        print(f"'{func.__name__}()' took {exec_time_us:.3f}us to execute")
+        end_ms = datetime.datetime.now().timestamp() * 10 ** 3
+        exec_time_ms = end_ms - start_ms
+        print(f"'{func.__name__}()' took {exec_time_ms:.3f}ms to execute")
         return ret
     return wrapper
 
